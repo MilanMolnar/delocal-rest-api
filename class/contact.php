@@ -88,7 +88,7 @@ class Contact{
                         name = :name, 
                         email = :email, 
                         phone = :phone, 
-                        address = :address,
+                        address = :address
                     WHERE 
                         id = :id";
 
