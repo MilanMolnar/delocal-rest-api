@@ -1,4 +1,5 @@
 <?php
+include_once "environment.php";
 
 class Database {
     private $host;
@@ -20,6 +21,7 @@ class Database {
         try{
             $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->database_name, $this->username, $this->password);
             $this->conn->exec("set names utf8");
+            echo "Database successfully connected!";
         }catch(PDOException $exception){
             echo "Database could not be connected: " . $exception->getMessage();
         }
