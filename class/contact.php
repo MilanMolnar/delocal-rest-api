@@ -36,7 +36,7 @@ class Contact{
                         name = :name,   
                         email = :email, 
                         address = :address, 
-                        phone = :phone,
+                        phone = :phone
                         ";
 
         $stmt = $this->conn->prepare($sqlQuery);
@@ -60,12 +60,12 @@ class Contact{
                         name, 
                         email, 
                         address, 
-                        phone,
+                        phone
                       FROM
                         ". $this->db_table ."
                     WHERE 
                        id = ?
-                    LIMIT 0,1";
+                       LIMIT 0,1";
 
         $stmt = $this->conn->prepare($sqlQuery);
 
@@ -74,7 +74,6 @@ class Contact{
         $stmt->execute();
 
         $dataRow = $stmt->fetch(PDO::FETCH_ASSOC);
-
         $this->name = $dataRow['name'];
         $this->email = $dataRow['email'];
         $this->address = $dataRow['address'];
