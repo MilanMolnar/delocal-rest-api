@@ -85,20 +85,14 @@ class Contact{
         $sqlQuery = "UPDATE
                         ". $this->db_table ."
                     SET
-                        name = :name, 
-                        email = :email, 
-                        phone = :phone, 
-                        address = :address
+                        email = :email
                     WHERE 
                         id = :id";
 
         $stmt = $this->conn->prepare($sqlQuery);
 
         // bind data
-        $stmt->bindParam(":name", $this->name);
         $stmt->bindParam(":email", $this->email);
-        $stmt->bindParam(":address", $this->address);
-        $stmt->bindParam(":phone", $this->phone);
         $stmt->bindParam(":id", $this->id);
 
         if($stmt->execute()){

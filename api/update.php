@@ -18,10 +18,7 @@ $data = json_decode(file_get_contents("php://input"));
 $item->id = $data->id;
 
 // employee values
-$item->name = $data->name;
 $item->email = $data->email;
-$item->address = $data->address;
-$item->phone = $data->phone;
 
 if($item->update()){
     http_response_code(200);
