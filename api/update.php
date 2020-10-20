@@ -17,12 +17,12 @@ $data = json_decode(file_get_contents("php://input"));
 
 $item->id = $data->id;
 
-// employee values
+// contact email
 $item->email = $data->email;
 
 if($item->update()){
     http_response_code(200);
-    echo json_encode("Employee data updated.");
+    echo json_encode("Contact data updated.");
 } else{
     http_response_code(422);
     echo json_encode("Data could not be updated");
