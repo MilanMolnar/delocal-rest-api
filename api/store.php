@@ -11,20 +11,22 @@ include_once 'class/contact.php';
 $database = new Database();
 $db = $database->getConnection();
 
-$item = new Contact($db);
-
+$contact = new Contact($db);
+//getting and decoding the JSON body's data
 $data = json_decode(file_get_contents("php://input"));
 
-$item->name = $data->name;
-$item->email = $data->email;
-$item->address = $data->address;
-$item->phone = $data->phone;
+//setting the contact's fields with the appropriate data
+$contact->name = $data->name;
+$contact->email = $data->email;
+$contact->address = $data->address;
+$contact->phone = $data->phone;
 
-if($item->store()){
+//the contact could be stored responding with a 201 created status code
+if($contact->store()){
     http_response_code(201);
-    echo 'Employee created successfully.';
-} else{
+    echo 'Contact created successfully.';
+} else{ //else responding with 400 to indicate the problem
     http_response_code(400);
-    echo 'Employee could not be created.';
+    echo 'Contact could not be created.';
 }
 ?>

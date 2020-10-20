@@ -17,8 +17,9 @@ $data = json_decode(file_get_contents("php://input"));
 
 $item->id = $data->id;
 
-// contact email
+// contact email set
 $item->email = $data->email;
+
 
 if($item->update()){
     http_response_code(200);

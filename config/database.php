@@ -8,7 +8,7 @@ class Database {
     private $password;
 
     public $conn;
-
+    //setting the fields in the constructor with the env file
     function __construct() {
         $this->host = $_ENV["HOST"];
         $this->database_name = $_ENV["DATABASE_NAME"];
@@ -21,7 +21,6 @@ class Database {
         try{
             $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->database_name, $this->username, $this->password);
             $this->conn->exec("set names utf8");
-            echo "Database successfully connected!";
         }catch(PDOException $exception){
             echo "Database could not be connected: " . $exception->getMessage();
         }

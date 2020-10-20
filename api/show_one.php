@@ -11,28 +11,28 @@ include_once 'class/contact.php';
 $database = new Database();
 $db = $database->getConnection();
 
-$item = new Contact($db);
+$contact = new Contact($db);
 
-$item->id = isset($_GET['id']) ? $_GET['id'] : die();
+$contact->id = isset($_GET['id']) ? $_GET['id'] : die();
 
-$item->showOne();
+$contact->showOne();
 
-if($item->name != null){
-    // create array
-    $emp_arr = array(
-        "id" =>  $item->id,
-        "name" => $item->name,
-        "email" => $item->email,
-        "address" => $item->address,
-        "phone" => $item->phone
+//if contact's name is set, create the array
+if($contact->name != null){
+    $contact_arr = array(
+        "id" =>  $contact->id,
+        "name" => $contact->name,
+        "email" => $contact->email,
+        "address" => $contact->address,
+        "phone" => $contact->phone
     );
 
     http_response_code(200);
-    echo json_encode($emp_arr);
+    echo json_encode($contact_arr);
 }
-
+//if the name could not be set response with 404.
 else{
     http_response_code(404);
-    echo json_encode("Employee not found.");
+    echo json_encode("Contact not found.");
 }
 ?>

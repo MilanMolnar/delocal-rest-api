@@ -1,16 +1,15 @@
 <?php
-
+//masking the request urls with a front controller
 $route = ($_SERVER['REQUEST_URI']);
 $routeArray = explode('/', $route);
-$method = $routeArray[1];
+$routeMethod = $routeArray[1];
 $routeCount = count($routeArray);
 $id = "";
 
-if ($method == "contact" && $routeCount == 3)
+if ($routeMethod == "contact" && $routeCount == 3)
 {
     $id = $routeArray[2];
 }
-echo $id;
 switch ($_SERVER['REQUEST_URI']) {
     case '/contacts/update':
         include 'api/update.php';
@@ -26,5 +25,6 @@ switch ($_SERVER['REQUEST_URI']) {
         include 'api/show_one.php';
         break;
     default:
-        die("404 Not Found");
+        http_response_code(404);
+        echo json_encode("Not found.");
 }
